@@ -1,0 +1,7 @@
+GET http://localhost:8080/api/vendors/
+###
+GET http://localhost:8080/api/vendors/1/
+###
+GET http://localhost:8080/api/vendors/101/
+###
+GET http://localhost:8080/vendors/
