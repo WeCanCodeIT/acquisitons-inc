@@ -1,5 +1,7 @@
 package com.acquisitionsinc.catalog.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,6 +14,7 @@ public class Product {
     @GeneratedValue
     private long id;
     private String name;
+    @JsonIgnore
     @ManyToOne
     private Vendor vendor;
     private BigDecimal price;

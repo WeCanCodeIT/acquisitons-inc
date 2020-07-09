@@ -1,7 +1,29 @@
 GET http://localhost:8080/api/vendors/
+
 ###
 GET http://localhost:8080/api/vendors/1/
+
 ###
 GET http://localhost:8080/api/vendors/101/
+
 ###
-GET http://localhost:8080/vendors/
+POST http://localhost:8080/api/vendors/add/
+Content-Type: application/json
+
+{
+  "name": "Test Vendor",
+  "phoneNumber": "614-867-5309"
+}
+
+###
+
+PATCH http://localhost:8080/api/vendors/1/addProduct/
+Content-Type: application/json
+
+{
+  "name": "Test Product",
+  "price": 12.34
+}
+
+###
+DELETE http://localhost:8080/api/vendors/2/

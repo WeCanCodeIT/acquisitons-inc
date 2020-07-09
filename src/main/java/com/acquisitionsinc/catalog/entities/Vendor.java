@@ -15,7 +15,7 @@ public class Vendor {
     @GeneratedValue
     private long id;
     private String name;
-    @OneToMany
+    @OneToMany(mappedBy = "vendor")
     private Collection<Product> products;
     private String phoneNumber;
 

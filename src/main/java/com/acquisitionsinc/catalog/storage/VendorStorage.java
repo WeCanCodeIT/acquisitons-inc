@@ -13,10 +13,10 @@ public class VendorStorage {
     public VendorStorage(VendorRepository vendorRepo) {
         this.vendorRepo = vendorRepo;
     }
-    //Things this class does:
-    // Stores stuff (saving)
-    // Retrieves all
-    // Retrieves by id
+
+    public void delete(long id) {
+        vendorRepo.deleteById(id);
+    }
 
     public Vendor save(Vendor vendor){
         return vendorRepo.save(vendor);
