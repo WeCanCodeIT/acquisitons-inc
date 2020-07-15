@@ -1,50 +1,55 @@
 const renderAllVendors = (element, vendors) => {
   clearElementChildren(element);
-  let vendorHtml = ''
+
   for (let i = 0; i < vendors.length; i++) {
-    vendorHtml += `
-        <article class="vendor">
+    const article = document.createElement('article');
+    article.classList.add('vendor');
+    article.innerHTML = `
             <h2 class="vendor__title">${vendors[i].name}</h2>
-            <h4 class="vendor__tagline">${vendors[i].phoneNumber}</h4>            
-        </article>
-        `
-    console.log(vendorHtml)
+            <h4 class="vendor__phone-number">${vendors[i].phoneNumber}</h4>            
+        `;
+
+    article.addEventListener('click', () => {
+      renderVendor(element, vendors[i]);
+    });
+    element.append(article);
   };
-  element.innerHTML = vendorHtml;
-  element.querySelectorAll('.vendor').forEach(element => element.addEventListener('click', () => {
-    alert("HI!")
-  }))
+}
+
+const renderVendor = (element, vendor) => {
+  clearElementChildren(element);
+  element.innerHTML = `
+      <article class="vendor">
+        <h2 class="vendor__title">${vendor.name}</h2>
+        <h4 class="vendor__tagline">${vendor.phoneNumber}</h4>            
+      </article>
+  `
+  const products = document.createElement('ul');
+
+  //for(product of vendor.products){...}
+  vendor.products.forEach((product) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<a class = "product__name">${product.name}</a>`
+    li.addEventListener('click', () => {
+      alert(`You clicked on ${product.name}!`)
+    })
+    products.append(li);
+  })
+  const backHomeLink = document.createElement('a');
+  backHomeLink.innerText = "Go Back to All Vendors"
+  backHomeLink.addEventListener('click', () => {
+    fetchVendors()
+      .then(vendors => {
+        renderAllVendors(catalog, vendors)
+      });
+  })
+  element.append(products);
+  element.append(backHomeLink);
 }
 
 const fetchVendors = async () => {
-  return `
-      [
-        {
-          "id": 1,
-          "name": "ACME Inc",
-          "products": [
-            {
-              "id": 4,
-              "name": "Grand Piano",
-              "price": 1000000.00
-            }
-          ],
-          "phoneNumber": "419-950-4343"
-        },
-        {
-          "id": 2,
-          "name": "Jenni's Ice Cream",
-          "products": [
-            {
-              "id": 3,
-              "name": "Salted Carmel",
-              "price": 13.45
-            }
-          ],
-          "phoneNumber": "614-867-5309"
-        }
-      ]
-    `
+  return fetch('http://localhost:8080/api/vendors/')
+    .then(response => response.json())
 }
 
 const clearElementChildren = element => {
@@ -56,7 +61,6 @@ const clearElementChildren = element => {
 
 const catalog = document.querySelector(".catalog")
 fetchVendors()
-  .then(response => JSON.parse(response))
   .then(vendors => {
     console.log(vendors);
     renderAllVendors(catalog, vendors)
