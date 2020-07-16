@@ -33,8 +33,9 @@ public class VendorController {
     }
 
     @PostMapping("/api/vendors/add/")
-    public Vendor addVendor(@RequestBody Vendor vendor){
-        return vendorStorage.save(vendor);
+    public Collection<Vendor> addVendor(@RequestBody Vendor vendor){
+        vendorStorage.save(vendor);
+        return vendorStorage.retrieveAllVendors();
     }
 
     @PatchMapping("/api/vendors/{vendorId}/addProduct/")
