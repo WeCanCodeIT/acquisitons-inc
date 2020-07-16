@@ -60,6 +60,5 @@ function drawForm(element) {
             .then(vendors => {
                 renderAllVendors(element, vendors)
             })
-
     })
 }

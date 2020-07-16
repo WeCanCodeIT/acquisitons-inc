@@ -4,7 +4,6 @@ import com.acquisitionsinc.catalog.entities.Product;
 import com.acquisitionsinc.catalog.entities.Vendor;
 import com.acquisitionsinc.catalog.storage.ProductStorage;
 import com.acquisitionsinc.catalog.storage.VendorStorage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +13,7 @@ import java.math.BigDecimal;
 public class Populator implements CommandLineRunner {
     VendorStorage vendorStorage;
     ProductStorage productStorage;
+
     public Populator(VendorStorage vendorStorage, ProductStorage productStorage) {
         this.vendorStorage = vendorStorage;
         this.productStorage = productStorage;

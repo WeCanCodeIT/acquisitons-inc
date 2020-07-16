@@ -1,7 +1,5 @@
 package com.acquisitionsinc.catalog.entities;
 
-import com.acquisitionsinc.catalog.entities.Product;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -23,7 +21,9 @@ public class Vendor {
         this.name = name;
         this.phoneNumber = phoneNumber;
     }
-    protected Vendor(){}
+
+    protected Vendor() {
+    }
 
     //Things it does:
     public long getId() {

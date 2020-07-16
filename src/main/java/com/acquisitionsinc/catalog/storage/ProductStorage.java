@@ -12,7 +12,7 @@ public class ProductStorage {
 
     ProductRepository productRepo;
 
-    public Product save(Product product){
+    public Product save(Product product) {
         return productRepo.save(product);
     }
 }

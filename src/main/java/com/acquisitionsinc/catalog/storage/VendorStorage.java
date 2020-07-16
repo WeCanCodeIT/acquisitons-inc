@@ -18,14 +18,15 @@ public class VendorStorage {
         vendorRepo.deleteById(id);
     }
 
-    public Vendor save(Vendor vendor){
+    public Vendor save(Vendor vendor) {
         return vendorRepo.save(vendor);
     }
 
-    public Collection<Vendor> retrieveAllVendors(){
+    public Collection<Vendor> retrieveAllVendors() {
         return (Collection<Vendor>) vendorRepo.findAll();
     }
-    public Vendor retrieveVendorById(long id){
+
+    public Vendor retrieveVendorById(long id) {
         return vendorRepo.findById(id).get();
     }
 }
