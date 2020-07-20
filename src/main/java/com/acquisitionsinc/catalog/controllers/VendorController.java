@@ -49,4 +49,11 @@ public class VendorController {
         vendorStorage.delete(vendorId);
         return vendorStorage.retrieveAllVendors();
     }
+    @PatchMapping("/api/vendors/{vendorId}/comment/")
+    public  Vendor addCommentToVendor(@PathVariable long vendorId, @RequestBody String comment){
+        Vendor vendor = vendorStorage.retrieveVendorById(vendorId);
+        vendor.addComment(comment);
+        vendorStorage.save(vendor);
+        return vendor;
+    }
 }

@@ -1,10 +1,9 @@
 package com.acquisitionsinc.catalog.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Vendor {
@@ -16,6 +15,8 @@ public class Vendor {
     @OneToMany(mappedBy = "vendor")
     private Collection<Product> products;
     private String phoneNumber;
+    @ElementCollection
+    private List<String> comments;
 
     public Vendor(String name, String phoneNumber) {
         this.name = name;
@@ -40,5 +41,16 @@ public class Vendor {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public void addComment(String comment){
+        if(comments==null){
+            comments=new ArrayList<>();
+        }
+        comments.add(comment);
+    }
+
+    public List<String> getComments() {
+        return comments;
     }
 }
